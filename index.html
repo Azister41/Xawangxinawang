@@ -1655,16 +1655,17 @@ window._QR={QRCode:__r("index"),QRErrorCorrectLevel:__r("QRErrorCorrectLevel")};
 <script>
 // Data paket: ubah di sini
 const paket=[
-  {op:"3",cls:"tri",gb:"5GB",harga:25000},
-  {op:"Axis",cls:"axis",gb:"10GB",harga:45000},
-  {op:"XL",cls:"xl",gb:"20GB",harga:80000},
-  {op:"3",cls:"three",gb:"30GB",harga:110000},
-  {op:"Smartfren",cls:"smartfren",gb:"15GB",harga:60000},
-  {op:"Telkomsel",cls:"telkomsel",gb:"25GB",harga:95000},
-  {op:"Indosat",cls:"indosat",gb:"5GB",harga:30000},
-  {op:"Indosat",cls:"indosat",gb:"10GB",harga:50000},
-  {op:"Indosat",cls:"indosat",gb:"20GB",harga:75000},
-  {op:"Indosat",cls:"indosat",gb:"30GB",harga:100000}
+  {op:"3",cls:"tri",gb:"5GB",harga:25000,hari:28},
+  {op:"Axis",cls:"axis",gb:"3GB",harga:20000,hari:7},
+  {op:"Axis",cls:"axis",gb:"10GB",harga:45000,hari:28},
+  {op:"XL",cls:"xl",gb:"20GB",harga:80000,hari:28},
+  {op:"3",cls:"three",gb:"30GB",harga:110000,hari:28},
+  {op:"Smartfren",cls:"smartfren",gb:"15GB",harga:60000,hari:28},
+  {op:"Telkomsel",cls:"telkomsel",gb:"25GB",harga:95000,hari:28},
+  {op:"Indosat",cls:"indosat",gb:"5GB",harga:30000,hari:28},
+  {op:"Indosat",cls:"indosat",gb:"10GB",harga:50000,hari:28},
+  {op:"Indosat",cls:"indosat",gb:"20GB",harga:75000,hari:28},
+  {op:"Indosat",cls:"indosat",gb:"30GB",harga:100000,hari:28
 ];
 const WA="6289515307900"; // nomor WA penjual (format 62)
 const rp=n=>"Rp "+n.toLocaleString("id-ID");
@@ -1674,9 +1675,10 @@ const kartu=(p,i)=>`
     <span class="tag ${p.cls}">${p.op}</span>
     <div class="gb">${p.gb}</div>
     <div class="harga">${rp(p.harga)}</div>
-    <div class="aktif">Aktif 28 hari</div>
+    <div class="aktif">Aktif ${p.hari} hari</div>
     <button class="beli" data-i="${i}">Beli</button>
   </div>`;
+paket.sort((a,b)=>(a.hari||28)-(b.hari||28));
 document.getElementById("paket").innerHTML=paket.slice(0,4).map(kartu).join("");
 
 let pilih=null;
